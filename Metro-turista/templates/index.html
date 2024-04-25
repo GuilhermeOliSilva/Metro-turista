@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metrô de São Paulo</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <svg viewBox="0 0 800 500">
+        <path id="metro-line" d="M350,58 L350,460" onclick="showLineInfo('Linha Azul')" />
+        
+        {% for result in results %}
+            <circle cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}')" />
+            <text class="nome_estacao" x="370" y="{{ loop.index * (400 / (results|length)) + 50 }}" transform="rotate(325, 370, {{ loop.index * (400 / (results|length)) + 52 }})">{{ result[1] }}</text>
+        {% endfor %}
+    </svg>
+
+    <div id="station-info" class="modal"></div>
+
+    <script src="static/script.js" defer>
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+
+    font-family: 'Courier New', Courier, monospace;
+}
+
+svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+path {
+    fill: none;
+    stroke: #1900ff;
+    stroke-width: 15px; /* Aumente a largura da linha para torná-la mais visível */
+    cursor: pointer;
+}
+
+circle {
+    fill: #ffffff;
+    cursor: pointer;
+}
+
+.selected {
+    fill: black;
+}
+
+.nome_estacao {
+    font-size: 7.2px;
+    font-weight: bold;
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 100%;
+    background-color: #2815d4;
+    color: white;
+    padding: 20px;
+    border-radius: 12px 0 0 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    overflow-y: auto; /* Adicionado para rolagem vertical dentro do modal, se necessário */
+}
+
+.nome_estacao_modal {
+    font-size: 38px;
+    text-align: center;
+}
+
+.text_horaFunc_estacao_modal {
+    font-size: 14px;
+}
+
+.horaFunc_estacao_modal {
+    font-size: 12px;
+}
+
+.text_horaFunc_estacao_modal,
+.horaFunc_estacao_modal {
+    display: inline-block;
+    vertical-align: middle; /* Alinhar verticalmente */
+}
+
+.imagem_estacao_modal {
+    border-radius: 12px;
+    width: 100%;
+    height: 50%;
+}
