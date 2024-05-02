@@ -8,6 +8,57 @@ body, html {
     font-family: 'Courier New', Courier, monospace;
 }
 
+/*Linhas do Metro Select*/
+.white-ball {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+}
+
+/* Ajuste as posições das bolas brancas conforme necessário */
+.white-ball:nth-child(1) {
+    top: 50%;
+    left: 10px;
+    transform: translate(-50%, -50%);
+}
+
+.white-ball:nth-child(2) {
+    top: 50%;
+    right: 10px;
+    transform: translate(50%, -50%);
+}
+
+.blue-line {
+    display: inline-block;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 30px;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 20px;
+    border-radius: 40px;
+    background-color: #1900ff;
+}
+
+.blue-line:hover, .green-line:hover {
+    cursor: pointer;
+}
+
+.green-line {
+    display: inline-block;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: 100px;
+    width: 50px;
+    height: 20px;
+    border-radius: 40px;
+    background-color: green;
+}
+
+/*Reta*/
 svg {
     display: block;
     width: 100%;
@@ -18,7 +69,6 @@ svg {
 
 path {
     fill: none;
-    stroke: #1900ff;
     stroke-width: 15px; /* Aumente a largura da linha para torná-la mais visível */
     cursor: pointer;
 }

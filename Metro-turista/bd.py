@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import mysql.connector
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -13,13 +13,23 @@ mydb = mysql.connector.connect(
 )
 
 # Rota para a página inicial
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
+    if request.method == 'POST':
+        cor = request.form['cor']
+        print(cor)
+        if cor == 'verde':
+            tabela = 'linhaverde'
+        else:
+            tabela = 'linhaazul'
+    else:
+        tabela = 'linhaazul'
+
     # Cria um cursor
     cursor = mydb.cursor()
 
-    # Executa a consulta para buscar a coluna "nomes" da tabela "linhaazul"
-    sql = "SELECT * FROM linhaazul"
+    # Executa a consulta para buscar os dados da tabela definida
+    sql = f"SELECT * FROM {tabela}"
     cursor.execute(sql)
 
     # Busca todas as linhas
@@ -30,6 +40,7 @@ def index():
 
     # Renderiza o template HTML com os dados obtidos
     return render_template('index.html', results=results)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
