@@ -20,6 +20,8 @@ def index():
         print(cor)
         if cor == 'verde':
             tabela = 'linhaverde'
+        elif cor == 'vermelha':  # Adicione a condição para a cor vermelha
+            tabela = 'linhavermelha'
         else:
             tabela = 'linhaazul'
     else:

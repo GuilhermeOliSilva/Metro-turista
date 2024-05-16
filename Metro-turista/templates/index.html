@@ -19,6 +19,11 @@
             <div class="white-ball"></div>
         </div>
     </div>
+
+    <div class="red-line" onclick="changeLine('Linha Vermelha')">
+        <div class="white-ball"></div>
+        <div class="white-ball"></div>
+    </div>
 </header>
 
 <body>
@@ -28,7 +33,7 @@
         <path id="metro-line" d="M350,58 L350,460" onclick="showLineInfo('Linha Azul')" style="stroke: #1900ff;"/>
         
         {% for result in results %}
-            <circle cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}')" />
+            <circle class="white-ball-line" cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}', this)" />
             <text class="nome_estacao" x="370" y="{{ loop.index * (400 / (results|length)) + 50 }}" transform="rotate(325, 370, {{ loop.index * (400 / (results|length)) + 52 }})">{{ result[1] }}</text>
         {% endfor %}
     </svg>
@@ -37,7 +42,16 @@
         <path id="metro-line" d="M350,58 L350,460" onclick="showLineInfo('Linha Verde')" style="stroke: green;"/>
     
         {% for result in results %}
-            <circle cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}')" />
+            <circle class="white-ball-line" cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}', this)" />
+            <text class="nome_estacao" x="370" y="{{ loop.index * (400 / (results|length)) + 50 }}" transform="rotate(325, 370, {{ loop.index * (400 / (results|length)) + 52 }})">{{ result[1] }}</text>
+        {% endfor %}
+    </svg>
+
+    <svg id="metro-svg-red" viewBox="0 0 800 500" style="display: none;">
+        <path id="metro-line" d="M350,58 L350,460" onclick="showLineInfo('Linha Vermelha')" style="stroke: red;"/>
+    
+        {% for result in results %}
+            <circle class="white-ball-line" cx="350" cy="{{ loop.index * (400 / (results|length)) + 50 }}" r="5" data-station="{{ result }}"  onclick="selectStation('{{ result[1] }}', '{{ result[2] }}', '{{ result[3] }}','{{ result[4]}}', this)" />
             <text class="nome_estacao" x="370" y="{{ loop.index * (400 / (results|length)) + 50 }}" transform="rotate(325, 370, {{ loop.index * (400 / (results|length)) + 52 }})">{{ result[1] }}</text>
         {% endfor %}
     </svg>
