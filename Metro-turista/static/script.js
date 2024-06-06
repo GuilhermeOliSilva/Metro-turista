@@ -22,29 +22,30 @@ function selectStation(stationName, stationFunc, stationLocation, stationImg, cl
 
 
 function changeLine(lineName) {
-    
     var modal = document.getElementById('station-info');
     modal.style.display = "none";
     
+    document.getElementById('metro-svg-blue').style.display = 'none';
+    document.getElementById('metro-svg-green').style.display = 'none';
+    document.getElementById('metro-svg-red').style.display = 'none';
+    document.getElementById('metro-svg-yellow').style.display = 'none';
+    
     if (lineName === 'Linha Azul') {
-        document.getElementById('metro-svg-green').style.display = 'none';
-        document.getElementById('metro-svg-red').style.display = 'none';
         document.getElementById('metro-svg-blue').style.display = 'block';
+        modal.style.backgroundColor = '#1900ff';
     } else if (lineName === 'Linha Verde') {
-        document.getElementById('metro-svg-blue').style.display = 'none';
-        document.getElementById('metro-svg-red').style.display = 'none';
         document.getElementById('metro-svg-green').style.display = 'block';
+        modal.style.backgroundColor = 'green';
     } else if (lineName === 'Linha Vermelha') {
-        document.getElementById('metro-svg-blue').style.display = 'none';
-        document.getElementById('metro-svg-green').style.display = 'none';
         document.getElementById('metro-svg-red').style.display = 'block';
+        modal.style.backgroundColor = 'red';
+    } else if (lineName === 'Linha Amarela') {
+        document.getElementById('metro-svg-yellow').style.display = 'block';
+        modal.style.backgroundColor = '#ffd700';
     }
 
-    var modal = document.getElementById('station-info');
-    modal.style.backgroundColor = lineName === 'Linha Azul' ? '#1900ff' : (lineName === 'Linha Verde' ? 'green' : 'red');
-
     var formData = new FormData();
-    formData.append('cor', lineName === 'Linha Azul' ? 'azul' : (lineName === 'Linha Verde' ? 'verde' : 'vermelha')); // Adicione a verificação para linha vermelha
+    formData.append('cor', lineName === 'Linha Azul' ? 'azul' : (lineName === 'Linha Verde' ? 'verde' : (lineName === 'Linha Vermelha' ? 'vermelha' : 'amarela')));
 
     fetch('/', {
         method: 'POST',
@@ -62,11 +63,13 @@ function changeLine(lineName) {
     
         var metroSvgBlue = doc.getElementById('metro-svg-blue');
         var metroSvgGreen = doc.getElementById('metro-svg-green');
-        var metroSvgRed = doc.getElementById('metro-svg-red'); // Adicione o elemento SVG para a linha vermelha
+        var metroSvgRed = doc.getElementById('metro-svg-red');
+        var metroSvgYellow = doc.getElementById('metro-svg-yellow');
 
         document.getElementById('metro-svg-blue').innerHTML = metroSvgBlue.innerHTML;
         document.getElementById('metro-svg-green').innerHTML = metroSvgGreen.innerHTML;
-        document.getElementById('metro-svg-red').innerHTML = metroSvgRed.innerHTML; // Atualize o conteúdo do SVG para a linha vermelha
+        document.getElementById('metro-svg-red').innerHTML = metroSvgRed.innerHTML;
+        document.getElementById('metro-svg-yellow').innerHTML = metroSvgYellow.innerHTML;
     
         var modalContent = doc.getElementById('station-info').innerHTML;
         document.getElementById('station-info').innerHTML = modalContent;
